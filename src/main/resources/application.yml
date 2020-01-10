@@ -1,0 +1,12 @@
+server:
+  port: @profile.port@
+  servlet:
+    context-path: @profile.path@
+
+spring:
+  profiles:
+    active: @profile.active@
+  application:
+    name: @project.name@
+    version: @project.version@
+    description: @project.description@
