@@ -2,6 +2,7 @@ package com.kimzing.web.service;
 
 import com.kimzing.base.utils.result.ApiResult;
 import com.kimzing.web.domain.dto.UserDTO;
+import com.kimzing.web.domain.dto.UserQueryDTO;
 
 /**
  * 用户模拟服务.
@@ -19,6 +20,6 @@ public interface UserService {
 
     ApiResult find(Long id);
 
-    ApiResult list(Integer pageNum, Integer pageSize);
+    ApiResult list(UserQueryDTO userQuery);
 
 }

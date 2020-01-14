@@ -4,6 +4,7 @@ import com.kimzing.base.utils.bean.BeanUtil;
 import com.kimzing.base.utils.page.PageResult;
 import com.kimzing.base.utils.result.ApiResult;
 import com.kimzing.web.domain.dto.UserDTO;
+import com.kimzing.web.domain.dto.UserQueryDTO;
 import com.kimzing.web.domain.event.UserCreatedEvent;
 import com.kimzing.web.domain.po.UserPO;
 import com.kimzing.web.repository.UserRepository;
@@ -61,8 +62,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ApiResult list(Integer pageNum, Integer pageSize) {
-        PageResult pageResult = userRepository.list(pageNum, pageSize);
+    public ApiResult list(UserQueryDTO userQuery) {
+        PageResult pageResult = userRepository.list(userQuery.getPageNum(), userQuery.getPageSize());
         List<UserDTO> userDTOList = BeanUtil.mapperList(pageResult.getData(), UserDTO.class);
         pageResult.setData(userDTOList);
         return ApiResult.success(pageResult);

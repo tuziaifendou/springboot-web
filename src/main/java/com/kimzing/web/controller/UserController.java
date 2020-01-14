@@ -2,8 +2,9 @@ package com.kimzing.web.controller;
 
 import com.kimzing.base.log.LogKim;
 import com.kimzing.base.utils.result.ApiResult;
-import com.kimzing.base.utils.spring.SpringPropertyUtil;
+import com.kimzing.base.web.resolver.json.JsonParam;
 import com.kimzing.web.domain.dto.UserDTO;
+import com.kimzing.web.domain.dto.UserQueryDTO;
 import com.kimzing.web.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +22,6 @@ public class UserController {
 
     @Resource
     UserService userService;
-
-    @GetMapping("/test")
-    public String hello() {
-        return SpringPropertyUtil.getValue("spring.redis.port");
-    }
 
     @LogKim(desc = "新增用户")
     @PostMapping
@@ -54,8 +50,8 @@ public class UserController {
 
     @LogKim(desc = "查找用户列表")
     @GetMapping("/list")
-    public ApiResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
-        return userService.list(pageNum, pageSize);
+    public ApiResult list(@JsonParam UserQueryDTO userQuery) {
+        return userService.list(userQuery);
     }
 
 }
