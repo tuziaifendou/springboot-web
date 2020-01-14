@@ -22,11 +22,6 @@ public class UserController {
     @Resource
     UserService userService;
 
-    @GetMapping("/test")
-    public String hello() {
-        return SpringPropertyUtil.getValue("spring.redis.port");
-    }
-
     @LogKim(desc = "新增用户")
     @PostMapping
     public ApiResult save(@RequestBody UserDTO userDTO) {
