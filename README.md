@@ -11,3 +11,11 @@ SpringBoot Web项目，包含各种Web功能示例
 > master
 
 * 基础Web项目
+
+> feature/restful
+
+* SpringMVC中使用Restful风格的URL
+
+> feature/validate
+
+* SpringMVC中对参数进行校验
