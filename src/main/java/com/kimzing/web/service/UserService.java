@@ -1,7 +1,17 @@
 package com.kimzing.web.service;
 
 import com.kimzing.base.utils.result.ApiResult;
+import com.kimzing.base.utils.valid.group.SaveValidGroup;
+import com.kimzing.base.utils.valid.group.UpdateValidGroup;
+import com.kimzing.web.config.valid.Gender;
 import com.kimzing.web.domain.dto.UserDTO;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 /**
  * 用户模拟服务.
@@ -9,16 +19,18 @@ import com.kimzing.web.domain.dto.UserDTO;
  * @author KimZing - kimzing@163.com
  * @since 2019/12/28 16:16
  */
+@Validated
 public interface UserService {
 
-    ApiResult save(UserDTO userDTO);
+    ApiResult getByName(@NotBlank(message = "1001") @Length(min = 1, max = 8, message = "1002") String name);
 
-    ApiResult remove(Long id);
+    ApiResult getByAge(@Min(value = 1, message = "1003") Integer ageFrom, @Max(value = 150, message = "1004") Integer ageTo);
 
-    ApiResult update(UserDTO userDTO);
+    ApiResult getByEmail(@Email(message = "1005") String email);
 
-    ApiResult find(Long id);
+    ApiResult save(@Validated(value = SaveValidGroup.class) UserDTO userDTO);
 
-    ApiResult list(Integer pageNum, Integer pageSize);
+    ApiResult update(@Validated(value = UpdateValidGroup.class) UserDTO userDTO);
 
+    ApiResult getByGender(@Gender(message = "1008") String gender);
 }

@@ -1,32 +1,20 @@
-### 添加用户
-POST http://localhost:8080/api/user
-Content-Type: application/json
+### 查询用户  缺失用户名
+GET http://localhost:8080/api/user/name
 
-{
-  "username": "kimzing",
-  "password":"123456",
-  "age": "25",
-  "gender": "MAN"
-}
+### 查询用户  用户名长度
+GET http://localhost:8080/api/user/name?name=abcdefghijk
 
-### 更改用户
-PUT http://localhost:8080/api/user/1
-Content-Type: application/json
+### 查询用户  年龄范围全部错误
+GET http://localhost:8080/api/user/age?ageFrom=-1&ageTo=180
 
-{
-  "username": "kimzing",
-  "password":"12345678",
-  "age": "26",
-  "gender": "MAN"
-}
+### 查询用户  年龄起始范围错误
+GET http://localhost:8080/api/user/age?ageFrom=-1&ageTo=24
 
-### 查询用户
-GET http://localhost:8080/api/user/1
+### 查询用户 邮箱格式错误
+GET http://localhost:8080/api/user/email?email=abc
 
-### 查询用户列表
-GET http://localhost:8080/api/user/list?pageNum=1&pageSize=10
 
-### 删除用户
-DELETE http://localhost:8080/api/user/1
+### 查询用户 性别错误
+GET http://localhost:8080/api/user/gender?gender=boy
 
 ###

@@ -1,8 +1,6 @@
 package com.kimzing.web.controller;
 
-import com.kimzing.base.log.LogKim;
 import com.kimzing.base.utils.result.ApiResult;
-import com.kimzing.base.utils.spring.SpringPropertyUtil;
 import com.kimzing.web.domain.dto.UserDTO;
 import com.kimzing.web.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +9,10 @@ import javax.annotation.Resource;
 
 /**
  * 模拟用户控制层.
+ *
+ * <p>
+ *     为了模拟校验，将参数的required设置为false
+ * </p>
  *
  * @author KimZing - kimzing@163.com
  * @since 2019/12/28 11:37
@@ -22,35 +24,35 @@ public class UserController {
     @Resource
     UserService userService;
 
-    @LogKim(desc = "新增用户")
+    @GetMapping("/name")
+    public ApiResult getByName(@RequestParam(required = false) String name) {
+        return userService.getByName(name);
+    }
+
+    @GetMapping("/age")
+    public ApiResult getByAge(@RequestParam(required = false) Integer ageFrom, @RequestParam(required = false) Integer ageTo) {
+        return userService.getByAge(ageFrom, ageTo);
+    }
+
+    @GetMapping("/email")
+    public ApiResult getByEmail(@RequestParam(required = false) String email) {
+        return userService.getByEmail(email);
+    }
+
+    @GetMapping("/gender")
+    public ApiResult getByGender(@RequestParam(required = false) String gender) {
+        return userService.getByGender(gender);
+    }
+
+
     @PostMapping
     public ApiResult save(@RequestBody UserDTO userDTO) {
         return userService.save(userDTO);
     }
 
-    @LogKim(desc = "删除用户")
-    @DeleteMapping("/{id}")
-    public ApiResult remove(@PathVariable Long id) {
-        return userService.remove(id);
-    }
-
-    @LogKim(desc = "更新用户")
-    @PutMapping("/{id}")
-    public ApiResult update(@RequestBody UserDTO userDTO, @PathVariable Long id) {
-        userDTO.setId(id);
+    @PutMapping
+    public ApiResult update(@RequestBody UserDTO userDTO) {
         return userService.update(userDTO);
-    }
-
-    @LogKim(desc = "查找用户")
-    @GetMapping("/{id}")
-    public ApiResult find(@PathVariable Long id) {
-        return userService.find(id);
-    }
-
-    @LogKim(desc = "查找用户列表")
-    @GetMapping("/list")
-    public ApiResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
-        return userService.list(pageNum, pageSize);
     }
 
 }
