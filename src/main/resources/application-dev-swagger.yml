@@ -1,0 +1,25 @@
+# Swagger配置
+swagger:
+  title: SpringBoot Web Swagger使用示例
+  description: swagger使用示例
+  termsOfServiceUrl: http://localhost:8080/api
+  authorName: kimzing
+  authorEmail: kimzing@163.com
+  authorUrl: http://kimzing.com
+  version: 1.0.0
+  basePackage: com.kimzing.web.controller
+
+# knife开源的swagger ui配置
+knife4j:
+  # 是否是生产环境，如果是生产环境会默认关闭swagger
+  production: false
+  # 配置自定义markdown文件的位置
+  markdowns: classpath:markdown/*
+  # 配置认证功能
+  basic:
+    # 是否开启认证
+    enable: true
+    # 用户名
+    username: admin
+    # 密码
+    password: 123456
