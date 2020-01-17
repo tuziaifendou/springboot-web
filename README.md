@@ -14,8 +14,12 @@ SpringBoot Web项目，包含各种Web功能示例
 
 > feature/restful
 
-* SpringMVC中使用Restful风格的URL
+* SpringBoot工程实践:使用Restful风格定义URL
 
 > feature/validate
 
-* SpringMVC中对参数进行校验
+* SpringBoot工程实践:对请求参数进行校验Validated-自定义校验注解
+
+> feature/swagger
+
+* SpringBoot工程实践:Swagger进阶-使用自定义的Swagger页面
