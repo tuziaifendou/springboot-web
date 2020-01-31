@@ -32,12 +32,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public ApiResult save(UserDTO userDTO) {
         UserPO userPO = BeanUtil.mapperBean(userDTO, UserPO.class);
-        userPO = userRepository.save(userPO);
+        userRepository.save(userPO);
         userDTO = BeanUtil.mapperBean(userPO, UserDTO.class);
 
         // 发布领域事件: 创建用户
         applicationContext.publishEvent(new UserCreatedEvent(userDTO.getUsername()));
-        return ApiResult.success(userDTO);
+        return ApiResult.success();
     }
 
     @Override
