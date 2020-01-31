@@ -26,7 +26,7 @@ public class MockUserRepository {
 
     private static final ConcurrentHashMap<Long, UserPO> users = new ConcurrentHashMap<>();
 
-    public UserPO save(UserPO userPO) {
+    public Integer save(UserPO userPO) {
         boolean isNullId = Objects.isNull(userPO.getId());
         if (isNullId) {
             Long userId = idGeneration.getAndIncrement();
@@ -40,7 +40,7 @@ public class MockUserRepository {
 
         fillUserTimeByOperation(userPO, "CREATE");
         users.put(userPO.getId(), userPO);
-        return userPO;
+        return 1;
     }
 
     public void remove(Long id) {

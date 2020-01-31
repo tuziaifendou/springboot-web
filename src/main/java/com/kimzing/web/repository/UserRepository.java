@@ -19,7 +19,7 @@ public class UserRepository {
     @Resource
     MockUserRepository mockUserRepository;
 
-    public UserPO save(UserPO userPO) {
+    public Integer save(UserPO userPO) {
         return mockUserRepository.save(userPO);
     }
 
